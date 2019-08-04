@@ -7,6 +7,7 @@
   export let to = "#";
   export let replace = false;
   export let state = {};
+  export let className = '';
   export let getProps = () => ({});
 
   const { base } = getContext(ROUTER);
@@ -24,6 +25,8 @@
     isPartiallyCurrent,
     isCurrent
   });
+  
+  $: className = `${className} ${$props.class}`
 
   function onClick(event) {
     dispatch("click", event);
@@ -38,6 +41,6 @@
   }
 </script>
 
-<a href="{href}" aria-current="{ariaCurrent}" on:click="{onClick}" {...props}>
+<a href="{href}" aria-current="{ariaCurrent}" class={$className} on:click="{onClick}" {...props}>
   <slot></slot>
 </a>
